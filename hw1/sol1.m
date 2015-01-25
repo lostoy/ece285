@@ -104,7 +104,7 @@ for dist=1:3
     title('l2 recovery error v.s. Cardinality','FontSize',15,'FontWeight','Bold')
     xlabel('Cardinality of the true solution','FontSize',15);
     ylabel('Average relative l_2 error','FontSize',15);
-    legend('MP','OMP','LS-OMP','Weak-MP(t=0.5)','Thresholding')
+    legend('MP','OMP','LS-OMP','Weak-MP(t=0.5)','Thresholding','Location','northwest')
     set(gca,'FontSize',15,'FontWeight','Bold');
     saveas(gca, [char(dist_name(dist)) '_l2.eps'] ,'epsc');
     
@@ -113,7 +113,7 @@ for dist=1:3
     title('support error v.s. Cardinality','FontSize',15,'FontWeight','Bold')
     xlabel('Cardinality of the true solution','FontSize',15);
     ylabel('Probability of error in Support','FontSize',15);
-    legend('MP','OMP','LS-OMP','Weak-MP(t=0.5)','Thresholding')
+    legend('MP','OMP','LS-OMP','Weak-MP(t=0.5)','Thresholding','Location','northwest')
     set(gca,'FontSize',15,'FontWeight','Bold');
     saveas(gca, [char(dist_name(dist)) '_card.eps'] ,'epsc');
     
