@@ -5,7 +5,7 @@ dist_name=cell(1,3);
 dist_name{1}='gaussian';
 dist_name{2}='1_-1';
 dist_name{3}='cauchy';
-maxIter=1000;
+maxIter=10000;
 n=30;m=50;
 for dist=1:3
     disp(['----' dist_name{dist}]);
