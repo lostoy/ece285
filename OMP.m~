@@ -7,16 +7,28 @@ b0=b;
 [n,m]=size(A);
 S=zeros(m,1);
 x=zeros(m,1);
-%Q=zeros(n,m); % TODO: implicit Q of QR
+Q=zeros(n,m); % TODO: implicit Q of QR
 iter=1;
-while norm(b) > min_err
+
+while norm(b)^2 > min_err
     coefs=A'*b;
-    [coef,ind]=max(coefs); % assuming only one max exists
-    S(iter)=ind;
-    x(1:iter)=A(\b;
-    b=b-coef*A(ind); %TODO: implicit Q of QR
-    x(ind)=coef;
+    [~,ind]=max(abs(coefs)); % assuming only one max exists
+    S(ind)=1;
+    if (iter>1)
+        q=projectQperp(Q(:,1:iter-1),A(:,ind));
+        b=b-q*q'*b;
+        Q(:,iter)=q;
+    else
+        b=b-
+        x1=A(:,S==1)\b0;
+        b=b0-A(:,S==1)*x1; %TODO: implicit Q of QR
+        %x(S==1)=x1;
+        Q(:,1)=A(:,ind)/norm(A(:,ind));
+    end
+    iter=iter+1;
 end
+
+x(S==1)=A(:,S==1)\b0;
 r=norm(b)/norm(b0);
 end
 

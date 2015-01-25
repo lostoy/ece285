@@ -1,32 +1,36 @@
 function [ x, S, r ]=ThMP( A,b,options )
 %
 % input: A normalized!
-
+% modified version, recursive LLS to speed up
 min_err=options.min_error;
 
 
 b0=b;
 
-[~,m]=size(A);
+[n,m]=size(A);
 S=zeros(m,1);
 x=zeros(m,1);
-k=1;
+
 coefs=A'*b;
 [~,inds]=sort(abs(coefs),'descend');
+Q=zeros(n,m);
+iter=1;
+
 while norm(b)^2 > min_err
-    S=zeros(m,1);
-    x=zeros(m,1);
+    if (iter>1)
+       q=projectQperp(Q(:,1:iter-1),A(:,inds(iter))); 
+    else
+        q=A(:,inds(1));
+    end
     
-    S(inds(1:k))=1;
-    x1=A(:,S==1)\b0;
-    b=b0-A(:,S==1)*x1;
-    x(S==1)=x1;
-    
-    k=k+1;
+    b=b-q*q'*b;
+    Q(:,iter)=q;
+    S(inds(iter))=1;
+    iter=iter+1;
 end
 
 
 r=norm(b)/norm(b0);
-
+x(S==1)=A(:,S==1)\b0;
 end
 
