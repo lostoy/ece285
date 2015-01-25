@@ -33,7 +33,7 @@ for dist=1:3
     bar(x,h);
     title('histogram of  \mu(A)','FontSize',15,'FontWeight','Bold')
     set(gca,'FontSize',15,'FontWeight','Bold');
-    saveas(gca, [char(dist_name(dist)) '_h_mu.eps'] ,'epsc');
+    saveas(gca, ['./eps/' char(dist_name(dist)) '_h_mu.eps'] ,'epsc');
 
     [h,x]=hist(ubA);
     h=h/maxIter;
@@ -41,6 +41,6 @@ for dist=1:3
     bar(x,h);
     title('histogram of the upper bound','FontSize',15,'FontWeight','Bold')
     set(gca,'FontSize',15,'FontWeight','Bold');
-    saveas(gca, [char(dist_name(dist)) '_h_ub.eps'] ,'epsc');
+    saveas(gca, ['./eps/' char(dist_name(dist)) '_h_ub.eps'] ,'epsc');
 
 end

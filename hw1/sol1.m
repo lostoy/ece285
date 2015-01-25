@@ -106,7 +106,7 @@ for dist=1:3
     ylabel('Average relative l_2 error','FontSize',15);
     legend('MP','OMP','LS-OMP','Weak-MP(t=0.5)','Thresholding','Location','northwest')
     set(gca,'FontSize',15,'FontWeight','Bold');
-    saveas(gca, [char(dist_name(dist)) '_l2.eps'] ,'epsc');
+    saveas(gca, ['./eps/' char(dist_name(dist)) '_l2.eps'] ,'epsc');
     
     figure;
     plot(axis_supp_num,err2_MP_mean,axis_supp_num,err2_OMP_mean,axis_supp_num,err2_LSOMP_mean,axis_supp_num,err2_WMP_mean,axis_supp_num,err2_ThMP_mean,'LineWidth',2);
@@ -115,6 +115,6 @@ for dist=1:3
     ylabel('Probability of error in Support','FontSize',15);
     legend('MP','OMP','LS-OMP','Weak-MP(t=0.5)','Thresholding','Location','northwest')
     set(gca,'FontSize',15,'FontWeight','Bold');
-    saveas(gca, [char(dist_name(dist)) '_card.eps'] ,'epsc');
+    saveas(gca, ['./eps/' char(dist_name(dist)) '_card.eps'] ,'epsc');
     
 end
