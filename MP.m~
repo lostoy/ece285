@@ -1,0 +1,13 @@
+function [ x, S, r ] = MP( A,b,options )
+%
+% input: A normalized!
+
+min_err = options.min_error;
+b0 = b;
+while norm(b) > min_err
+    score = A'*b;
+    [inmax
+end
+
+end
+

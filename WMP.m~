@@ -1,0 +1,21 @@
+function [ x, S, r ]=WMP( A,b,options )
+%
+% input: A normalized!
+
+min_err=options.min_error;
+b0=b;
+[~,m]=size(A);
+S=zeros(m,1);
+x=zeros(m,1);
+
+while norm(b) > min_err
+    coefs=A'*b;
+    norm(A*coefs,
+    S(ind)=1;
+    b=b-coef*A(ind);
+    x(ind)=coef;
+end
+r=norm(b)/norm(b0);
+
+end
+
