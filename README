@@ -1,0 +1,11 @@
+--------HW1----------
+--------------flop count analysis-------------
+A is of size n*m, r is the number of non-zero entries in x.
+1) MP: O(m*n*r)
+2) OMP: O(m*n*r+n*r*r)
+3) LSOMP: O(m*n*r*r)
+4) WMP: O(k*n*r) k is the mean of number of cols a_l, such that a_l^T b_{p-1}>t |b_{p-1}|_2
+5) Thresholding: O(n*r*r)
+
+---------------Optional Problem---------------
+WTF....
