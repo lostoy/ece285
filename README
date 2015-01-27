@@ -13,6 +13,12 @@ A is of size n*m, r is the number of non-zero entries in x.
 5) Thresholding: O(n*r*r)
 
 ---------------Optional Problem---------------
-WTF....
+A vast of literature talks about the asymptotic distribution of this problem. We note the original problem is equivalent to finding the pdf of the minimum pair-wise angles of m points uniformly sampled on a n-dimensional unit sphere. We refer to the following journal for a asymptotic distribution of this.
+
+Cai, Tony, Jianqing Fan, and Tiefeng Jiang. 
+"Distributions of angles in random packing on spheres." 
+The Journal of Machine Learning Research 14.1 (2013): 1837-1864.
+
+Simulation results show that the bias of this asymptotic distribution goes down as m increases. And in extreme of m->\inf, the pdf will be a delta at \mu(A)=1, meaning that \mu(A) will converge to 1 in probability as m goes to infinity. This is intuitively correct, since when we adding more columns into A, the probability of two colinear columns occurs increases.
 
 
