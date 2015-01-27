@@ -91,6 +91,7 @@ for dist=1:4
             err2_ThMP(supp_num,iter)=(max(sum(S),supp_num)-sum(S.*supp))/max(sum(S),supp_num);
             runTimes(5)=runTimes(5)+toc;
         end
+        
     end
     %% plot
     err1_MP_mean=mean(err1_MP,2);
@@ -131,8 +132,8 @@ for dist=1:4
 end
 %%
 figure;
-runTimes=runTimes/maxIter/4;
-bar(runTimes);
+runTimes_mean=runTimes/maxIter/maxSupp/4;
+bar(runTimes_mean);
 
 title('runtimes of the algorithms','FontSize',15,'FontWeight','Bold')
 xlabel('Algorithms to compare','FontSize',15);

@@ -1,3 +1,8 @@
+
+1.26: Serious bugs solved for sol1.m.
+      and added runtime analysis plot.
+
+
 --------HW1----------
 --------------flop count analysis-------------
 A is of size n*m, r is the number of non-zero entries in x.
@@ -9,4 +14,5 @@ A is of size n*m, r is the number of non-zero entries in x.
 
 ---------------Optional Problem---------------
 WTF....
-$x^2$
+
+
