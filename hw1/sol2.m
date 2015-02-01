@@ -5,8 +5,8 @@ dist_name=cell(1,3);
 dist_name{1}='gaussian';
 dist_name{2}='1_-1';
 dist_name{3}='cauchy';
-maxIter=10000;
-n=30;m=2000;
+maxIter=1000;
+n=30;m=50;
 miuA=zeros(1,maxIter);
 ubA=zeros(1,maxIter);
 for iter=1:maxIter
@@ -37,6 +37,7 @@ plot(tx,pdf_x,'r--',x,h,'b.','LineWidth',2)
 
 title(['histogram of  \mu(A),n=30,m=' num2str(m)],'FontSize',15,'FontWeight','Bold')
 set(gca,'FontSize',15,'FontWeight','Bold');
+legend('asymptotic pdf','histogram')
 saveas(gca, ['./eps/' 'm_' num2str(m) '_h_mu.eps'] ,'epsc');
 
 [h,x]=hist(ubA,100);
