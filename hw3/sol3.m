@@ -70,7 +70,7 @@ runTimes=zeros(1,5);
             runTimes(4)=runTimes(4)+toc;
             %
             tic
-            X=lasso(A,b,'NumLambda',1);
+            X=lasso(A,b,'Lambda',0.001);
             x=X(:,1);
             S=(abs(x)>eps);
             err1_lasso(supp_num,iter)=norm(x-x0)^2/norm(x0)^2;
