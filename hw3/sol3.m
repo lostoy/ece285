@@ -30,6 +30,10 @@ runTimes=zeros(1,5);
     for supp_num=1:maxSupp
         disp(['-------- supp= ' num2str(supp_num) ' / ' num2str(maxSupp)])
         for iter=1:maxIter
+            if (mod(iter,100)==0)
+                    disp(['------------ iter= ' num2str(iter) ' / ' num2str(maxIter)])
+            end
+
             A=randn(n,m);
             A=normc(A);
             
@@ -70,8 +74,8 @@ runTimes=zeros(1,5);
             runTimes(4)=runTimes(4)+toc;
             %
             tic
-            X=lasso(A,b,'Lambda',0.001);
-            x=X(:,1);
+            [X,fitInfo]=lasso(A,b,'CV',5);
+            x=X(:,fitInfo.IndexMinMSE);
             S=(abs(x)>eps);
             err1_lasso(supp_num,iter)=norm(x-x0)^2/norm(x0)^2;
             err2_lasso(supp_num,iter)=(max(sum(S),supp_num)-sum(S.*supp))/max(sum(S),supp_num);
