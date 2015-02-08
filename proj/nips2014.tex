@@ -1,0 +1,171 @@
+\documentclass{article} % For LaTeX2e
+\usepackage{nips14submit_e,times}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+%\documentstyle[nips14submit_09,times,art10]{article} % For LaTeX 2.09
+
+
+
+\title{ECE285 Course Project Proposal}
+
+
+\author{
+David S.~Hippocampus\thanks{ Use footnote for providing further information
+about author (webpage, alternative address)---\emph{not} for acknowledging
+funding agencies.} \\
+Department of Computer Science\\
+Cranberry-Lemon University\\
+Pittsburgh, PA 15213 \\
+\texttt{hippo@cs.cranberry-lemon.edu} \\
+\And
+Coauthor \\
+Affiliation \\
+Address \\
+\texttt{email} \\
+\AND
+Coauthor \\
+Affiliation \\
+Address \\
+\texttt{email} \\
+\And
+Coauthor \\
+Affiliation \\
+Address \\
+\texttt{email} \\
+\And
+Coauthor \\
+Affiliation \\
+Address \\
+\texttt{email} \\
+(if needed)\\
+}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to \LaTeX{} to determine where to break
+% the lines. Using \AND forces a linebreak at that point. So, if \LaTeX{}
+% puts 3 of 4 authors names on the first line, and the last on the second
+% line, try using \AND instead of \And before the third author name.
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+\nipsfinalcopy % Uncomment for camera-ready version
+
+\begin{document}
+
+
+\maketitle
+
+\begin{abstract}
+In this course project, we plan to derive a mathematical model for (molecular?? sub meter??) imaging system we're currently building. Due to the sparseness of the underlying image, we hope compressed sensing can be applied to process the optical signal. We list the related literature to study in this proposal and hopefully a full-functioning imaging system will be working in the end of the course.
+
+\end{abstract}
+
+\section{Introduction}
+
+The number of measurement available from the proposed imaging system is relatively small, however, the image signal itself is sparse in some proper domain. Although with different physical settings, \textbf{compressed sensing} has been successfully applied for imaging systems as shown in [2][3]. We believe similar model can be used in our system for (molecular? sub-meter?) imaging.
+
+In this course project, we plan to study the literature related to our imaging system and conduct simulations to validate the proposed models.
+
+We give a brief description of the proposed imaging system in section 1, and discuss the details and related literature in the remaining sections.
+
+
+\section{Background}
+A brief introduction of the system. 
+
+put some of the figures of the system you've used in your presentations should be enough. Don't go into the details of the optics side. We just need to show a simple signal flow from which get the signal to be processed. (Maybe the figure we've drawn the first time we discussed this stuff)
+
+Even simpler, just explain A is affected by the property of the material, x is the (molecular??) image, and b is the light signal measured at different light frequency.
+
+
+\section{Mathematical Formulation}
+
+\subsection{Basic Model}
+The imaging system could be formulated mathematically as follows:
+
+Given the measurement $b \in \mathbb{R}^n$ and the measurement matrix $A \in \mathbb{R}^{n \times m}$(related to the distribution $\mathbb{P}$ of the optical material??), we want to recover the underlying image $x \in \mathbb{R}^m$.  To be more specific, we want to solve the inverse problem of:
+
+\begin{align}
+&Ax=b\\ \notag
+&\text{where x is sparse in some domain} 
+\end{align}
+
+Due to physical limitations, the number of available measurement, i.e. $n$, is relatively small. 
+
+\subsection{Design of $A$}
+In previous compressed sensing imaging systems, the measurement matrix $A$ could be arbitrary(often random matrix is used). However, in our system, $A$ can't be arbitrary, in fact it is affected by the distribution $\mathbb{P}$ of the optical material??. We'll need to experiment with different layout of the material ?? to satisfy RIP conditions. This is possible since we have a rather large freedom of choice of the distribution of the material??.
+
+\subsection{Sparsity of $x$}
+If we represent $x$ under the bases $\Phi$, we have:
+\begin{align}
+x & =\Phi y \\
+b & = A \Phi y 
+\end{align}
+
+We  would like to find a domain $\Phi$ where $y$ is sparse. Possible choices are the original image signal domain and spatial frequency domain as in cite[2]. We will experiment with different image representations in different domains and evaluate the performance.
+
+\subsection{Prior on $x$}
+Sometimes, we have prior information of $x$, for example the image is relatively smooth. We want to study the possibility of extending the model above to incorporate such prior knowledge.
+
+\subsection{Statistical model to handle uncertainty of $A$}
+The measurement matrix $A$ is affected by the material distribution $\mathbb{P}$, which is measured by physical devices in practice, which we denote as $A_0$. However, the measurement can be noisy hence degrade the performance of the imaging system.
+
+However, we propose to "calibrate" the measurement $A_0$ by a set of "training data".
+
+Given the correspondences of  $\{x_i,b_i, i=1,2,...n\}$, we could estimate $A$ by statistical modeling. We assume a Gaussian prior for the entries of $A$, and the measured $A_0$ could serve as the prior mean.
+
+To be specific:
+
+\begin{align}
+a&=[A_1,A_2,...A_n]^T\\
+X&= \begin{bmatrix}
+x_1^T	&	0	&	...	& 0\\
+0		&	x_1^T&	...	& 0\\
+0		&	0	&	... 	&x_1^T\\
+...		&...		&	...	&...\\
+x_n^T	&	0	&	...	& 0\\
+0		&	x_n^T&	...	& 0\\
+0		&	0	&	... 	&x_n^T\\
+\end{bmatrix}\\
+b&= \begin{bmatrix}
+b_1\\
+b_2\\
+...\\
+b_n
+\end{bmatrix}
+\end{align}
+
+A is estimated by its Maximum a Posteriori(MAP) estimator:
+\begin{align}
+\hat{a}_{MAP}=  \underset{a} {\mathrm{argmax}} ~ \mathcal{N}(b;X a, \sigma I) * \mathcal{N}(a;A_0,\sigma_0 I)
+\end{align}
+Where $\mathcal{N}(x;m,\Sigma)$ is the pdf of multivariate Gaussian distribution, $\sigma$ is the imaging noise and $\sigma_0$ is the variance of the prior.
+
+
+\small{
+[1] Willett R M, Marcia R F, \&Nichols J M. Compressed sensing for practical optical imaging systems: a tutorial[J]. {\it Optical Engineering}, 2011, 50(7): 072601-072601-13.
+
+[2] Lustig, Michael, David Donoho, \& John M. Pauly. "Sparse MRI: The application of compressed sensing for rapid MR imaging." {\it Magnetic resonance in medicine 58.6 (2007)}: 1182-1195.
+
+[3] 3.Duarte M F, Davenport M A, \&Takhar D, et al. Single-pixel imaging via compressive sampling[J]. {\it IEEE Signal Processing Magazine}, 2008, 25(2): 83.
+
+%[1] Alexander, J.A. \& Mozer, M.C. (1995) Template-based algorithms
+%for connectionist rule extraction. In G. Tesauro, D. S. Touretzky
+%and T.K. Leen (eds.), {\it Advances in Neural Information Processing
+%Systems 7}, pp. 609-616. Cambridge, MA: MIT Press.
+%
+%[2] Bower, J.M. \& Beeman, D. (1995) {\it The Book of GENESIS: Exploring
+%Realistic Neural Models with the GEneral NEural SImulation System.}
+%New York: TELOS/Springer-Verlag.
+%
+%[3] Hasselmo, M.E., Schnell, E. \& Barkai, E. (1995) Dynamics of learning
+%and recall at excitatory recurrent synapses and cholinergic modulation
+%in rat hippocampal region CA3. {\it Journal of Neuroscience}
+%{\bf 15}(7):5249-5262.
+%}
+
+\end{document}
