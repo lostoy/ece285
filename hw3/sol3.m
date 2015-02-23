@@ -77,7 +77,7 @@ runTimes=zeros(1,5);
 
             X=lasso(A,b,'Lambda',0.001);
 
-            x=X(:,fitInfo.IndexMinMSE);
+            x=X(:,1);
 
             S=(abs(x)>eps);
             err1_lasso(supp_num,iter)=norm(x-x0)^2/norm(x0)^2;
@@ -105,7 +105,7 @@ runTimes=zeros(1,5);
     figure;
     %plot(axis_supp_num,err1_MP_mean,axis_supp_num,err1_OMP_mean,axis_supp_num,err1_LSOMP_mean,axis_supp_num,err1_WMP_mean,axis_supp_num,err1_ThMP_mean,'LineWidth',2);
     %plot(axis_supp_num,err1_MP_mean,'-',axis_supp_num,err1_OMP_mean,'--',axis_supp_num,err1_LSOMP_mean,':',axis_supp_num,err1_WMP_mean,'-.','LineWidth',2);
-    plot(axis_supp_num,err1_MP_mean,axis_supp_num,err1_OMP_mean,axis_supp_num,err1_LSOMP_mean,axis_supp_num,err1_WMP_mean,axis_supp_num,err1_lasso_mean,'LineWidth',2);
+    plot(axis_supp_num,err1_MP_mean,'-',axis_supp_num,err1_OMP_mean,'--',axis_supp_num,err1_LSOMP_mean,':',axis_supp_num,err1_WMP_mean,'-.',axis_supp_num,err1_lasso_mean,'+-','LineWidth',2);
     
     title('l2 recovery error v.s. Cardinality','FontSize',15,'FontWeight','Bold')
     xlabel('Cardinality of the true solution','FontSize',15);
