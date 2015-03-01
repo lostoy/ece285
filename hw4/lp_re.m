@@ -40,7 +40,7 @@ function x = lp_re(A,y,p)
 % Creative Commons Licence
 % http://en.wikipedia.org/wiki/Creative_Commons
 %
-epsilon = 1
+epsilon = 1;
 % u_0 is the L_2 solution which would be exact if m = n,
 % but in Compressed expactations are that m is less than n
 u_0 = A\y;

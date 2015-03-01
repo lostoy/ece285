@@ -92,14 +92,14 @@ runTimes=zeros(1,7);
             
             %
             tic
-            x=lp_re(A,y,1);
+            x=lp_re(A,b,1);
             S=(abs(x)>eps);
             err1_rel1(supp_num,iter)=norm(x-x0)^2/norm(x0)^2;
             err2_rel1(supp_num,iter)=(max(sum(S),supp_num)-sum(S.*supp))/max(sum(S),supp_num);
             runTimes(6)=runTimes(5)+toc;
             %
             tic
-            x=lp_re(A,y,2);
+            x=lp_re(A,b,2);
             S=(abs(x)>eps);
             err1_rel2(supp_num,iter)=norm(x-x0)^2/norm(x0)^2;
             err2_rel2(supp_num,iter)=(max(sum(S),supp_num)-sum(S.*supp))/max(sum(S),supp_num);
