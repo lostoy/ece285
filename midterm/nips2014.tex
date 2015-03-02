@@ -8,7 +8,7 @@
 
 
 
-\title{ECE285 Course Project Midterm Report}
+\title{ECE285 Course Project Progress Report}
 
 
 \author{
@@ -121,8 +121,14 @@ We compare two different algorithms for solving the L1 minimization problem. One
 
 From our experiment, with $A2$ of size[??], sparsity [??], image size[??], the system can successfully recover the original image. 
 
-We also tested the TV minimization, an example is shown in figure[??].
-[conclusion?is it better?]
+\section{Future Work}
+Based on the review of the imaging systems, we would like to experiment with our system in the following aspects:
+
+\begin{enumerate}
+\item We'll try to add TV norm minimization to our current system. As in the other existed imaging systems, this assumption will lead to smooth images.
+\item Also, we'll try to find the optimal layout of the optical material so that the sensing matrix is most "incoherent". 
+\item To solve sparse recovery problems, a lot of solvers are available online, each with different approaches to relax the original L0 problem. We'll continue to evaluate their performance with respect to imaging quality in our system and hopefully will find the optimal one for our purpose.
+\end{enumerate}
 
 \vspace*{3\baselineskip}
 
