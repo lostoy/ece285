@@ -81,7 +81,7 @@ runTimes=zeros(1,7);
             %
             tic
 
-            X=lasso(A,b,'Lambda',0.001);
+            X=lasso(A,b,'Lambda',2.5*1e-3);
 
             x=X(:,1);
 
