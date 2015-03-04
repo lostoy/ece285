@@ -85,7 +85,7 @@ runTimes=zeros(1,7);
 
             x=X(:,1);
 
-            S=(abs(x)>eps);
+            S=(abs(x)>1e-4);
             err1_lasso(supp_num,iter)=norm(x-x0)^2/norm(x0)^2;
             err2_lasso(supp_num,iter)=(max(sum(S),supp_num)-sum(S.*supp))/max(sum(S),supp_num);
             runTimes(5)=runTimes(5)+toc;
@@ -93,17 +93,17 @@ runTimes=zeros(1,7);
             %
             tic
             x=lp_re(A,b,1);
-            S=(abs(x)>eps);
+            S=(abs(x)>1e-4);
             err1_rel1(supp_num,iter)=norm(x-x0)^2/norm(x0)^2;
             err2_rel1(supp_num,iter)=(max(sum(S),supp_num)-sum(S.*supp))/max(sum(S),supp_num);
-            runTimes(6)=runTimes(5)+toc;
+            runTimes(6)=runTimes(6)+toc;
             %
             tic
             x=lp_re(A,b,2);
-            S=(abs(x)>eps);
+            S=(abs(x)>1e-4);
             err1_rel2(supp_num,iter)=norm(x-x0)^2/norm(x0)^2;
             err2_rel2(supp_num,iter)=(max(sum(S),supp_num)-sum(S.*supp))/max(sum(S),supp_num);
-            runTimes(7)=runTimes(5)+toc;
+            runTimes(7)=runTimes(7)+toc;
             
         end
     end
@@ -124,10 +124,10 @@ runTimes=zeros(1,7);
     err2_lasso_mean=mean(err2_lasso,2);
     
     err1_rel1_mean=mean(err1_rel1,2);
-    err2_rel1_mean=mean(err1_rel1,2);
+    err2_rel1_mean=mean(err2_rel1,2);
     
     err1_rel2_mean=mean(err1_rel2,2);
-    err2_rel2_mean=mean(err1_rel2,2);
+    err2_rel2_mean=mean(err2_rel2,2);
     
     axis_supp_num=1:maxSupp;
     figure;
