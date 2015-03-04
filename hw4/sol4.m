@@ -80,10 +80,16 @@ runTimes=zeros(1,7);
             runTimes(4)=runTimes(4)+toc;
             %
             tic
+            cvx_begin quiet
+                variable x(m)
+                minimize(norm(x,1));
+                subject to
+                     A*x == b;
+            cvx_end
+            
+            %X=lasso(A,b,'Lambda',1e-10);
 
-            X=lasso(A,b,'Lambda',2.5*1e-3);
-
-            x=X(:,1);
+            %x=X(:,1);
 
             S=(abs(x)>1e-4);
             err1_lasso(supp_num,iter)=norm(x-x0)^2/norm(x0)^2;
