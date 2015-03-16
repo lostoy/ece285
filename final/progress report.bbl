@@ -1,0 +1,48 @@
+\begin{thebibliography}{1}
+
+\bibitem{lustig2007sparse}
+Michael Lustig, David Donoho, and John~M Pauly.
+\newblock Sparse mri: The application of compressed sensing for rapid mr
+  imaging.
+\newblock {\em Magnetic resonance in medicine}, 58(6):1182--1195, 2007.
+
+\bibitem{wiki:MRI}
+Wikipedia.
+\newblock Plagiarism --- {W}ikipedia{,} the free encyclopedia, 2004.
+
+\bibitem{twieg1983k}
+Donald~B Twieg.
+\newblock The k-trajectory formulation of the nmr imaging process with
+  applications in analysis and synthesis of imaging methods.
+\newblock {\em Medical Physics}, 10(5):610--621, 1983.
+
+\bibitem{duarte2008single}
+Marco~F Duarte, Mark~A Davenport, Dharmpal Takhar, Jason~N Laska, Ting Sun,
+  Kevin~E Kelly, and Richard~G Baraniuk.
+\newblock Single-pixel imaging via compressive sampling.
+\newblock {\em IEEE Signal Processing Magazine}, 25(2):83, 2008.
+
+\bibitem{coifman2001noiselets}
+Ronald Coifman, F~Geshwind, and Yves Meyer.
+\newblock Noiselets.
+\newblock {\em Applied and Computational Harmonic Analysis}, 10(1):27--44,
+  2001.
+
+\bibitem{robucci2010compressive}
+Ryan Robucci, Jordan~D Gray, Leung~Kin Chiu, Justin Romberg, and Paul Hasler.
+\newblock Compressive sensing on a cmos separable-transform image sensor.
+\newblock {\em Proceedings of the IEEE}, 98(6):1089--1101, 2010.
+
+\bibitem{koh2007interior}
+Kwangmoo Koh, Seung-Jean Kim, and Stephen~P Boyd.
+\newblock An interior-point method for large-scale l1-regularized logistic
+  regression.
+\newblock {\em Journal of Machine learning research}, 8(8):1519--1555, 2007.
+
+\bibitem{mohimani2008complex}
+G~Hosein Mohimani, Massoud Babaie-Zadeh, and Christian Jutten.
+\newblock Complex-valued sparse representation based on smoothed l0 norm.
+\newblock In {\em Acoustics, Speech and Signal Processing, 2008. ICASSP 2008.
+  IEEE International Conference on}, pages 3881--3884. IEEE, 2008.
+
+\end{thebibliography}

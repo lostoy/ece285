@@ -1,0 +1,20 @@
+\BOOKMARK [1][-]{section.1}{Compressive Imaging v.s. Traditional Image Compression}{}% 1
+\BOOKMARK [1][-]{section.2}{Compressive Imaging Literature Review}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{SparseMRI}{section.2}% 3
+\BOOKMARK [3][-]{subsubsection.2.1.1}{image recovery problem formulation}{subsection.2.1}% 4
+\BOOKMARK [3][-]{subsubsection.2.1.2}{discussions about sensing matrix}{subsection.2.1}% 5
+\BOOKMARK [2][-]{subsection.2.2}{Single-Pixel Imaging}{section.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.2.1}{hardware architecture}{subsection.2.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.2.2}{recovery problem formulation}{subsection.2.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.2.3}{sensing matrix design}{subsection.2.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.2.4}{image classification by smashing filter}{subsection.2.2}% 10
+\BOOKMARK [2][-]{subsection.2.3}{CI by CMOS Separable Image Sensor}{section.2}% 11
+\BOOKMARK [3][-]{subsubsection.2.3.1}{hardware architecture}{subsection.2.3}% 12
+\BOOKMARK [3][-]{subsubsection.2.3.2}{recovery problem formulation}{subsection.2.3}% 13
+\BOOKMARK [3][-]{subsubsection.2.3.3}{sensing matrix design}{subsection.2.3}% 14
+\BOOKMARK [1][-]{section.3}{Our High-speed Nanometer Compressive Imaging System}{}% 15
+\BOOKMARK [2][-]{subsection.3.1}{Hardware Architecture}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.2}{}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.3}{}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.4}{different design of sensing matrix A}{section.3}% 19
+\BOOKMARK [1][-]{section.4}{Future Work}{}% 20
