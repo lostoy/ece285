@@ -163,7 +163,7 @@ plot(axis_supp_num,err1_MP_mean,'-',axis_supp_num,err1_OMP_mean,'--',axis_supp_n
 title('l2 recovery error v.s. Cardinality','FontSize',15,'FontWeight','Bold')
 xlabel('Cardinality of the true solution','FontSize',15);
 ylabel('Average relative l_2 error','FontSize',15);
-legend('MP','OMP','LS-OMP','Weak-MP(t=0.5)','lasso','re-l1','re-l2','Location','northwest')
+legend('MP','OMP','LS-OMP','Weak-MP(t=0.5)','lasso','SBL','Location','northwest')
 set(gca,'FontSize',15,'FontWeight','Bold');
 saveas(gca, ['./eps/' 'l2.eps'] ,'epsc');
 
@@ -172,7 +172,7 @@ plot(axis_supp_num,err2_MP_mean,'-',axis_supp_num,err2_OMP_mean,'--',axis_supp_n
 title('support error v.s. Cardinality','FontSize',15,'FontWeight','Bold')
 xlabel('Cardinality of the true solution','FontSize',15);
 ylabel('Probability of error in Support','FontSize',15);
-legend('MP','OMP','LS-OMP','Weak-MP(t=0.5)','lasso','re-l1','re-l2','Location','northwest')
+legend('MP','OMP','LS-OMP','Weak-MP(t=0.5)','lasso','SBL','Location','northwest')
 set(gca,'FontSize',15,'FontWeight','Bold');
 saveas(gca, ['./eps/'  'card.eps'] ,'epsc');
 
