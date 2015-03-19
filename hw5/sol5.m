@@ -1,5 +1,7 @@
 clc;
 close all;
+addpath(genpath('../hw4/'));
+addpath(genpath('./'));
 %% generating A and normalize
 n=30;m=50;
 
@@ -9,7 +11,7 @@ maxSupp=10;
 
 options.min_error=1e-4;
 options.t=0.5;
-runTimes=zeros(1,6);
+runTimes=zeros(1,8);
 
 
 err1_MP=zeros(maxSupp,maxIter);
@@ -27,11 +29,11 @@ err2_WMP=zeros(maxSupp,maxIter);
 err1_lasso=zeros(maxSupp,maxIter);
 err2_lasso=zeros(maxSupp,maxIter);
 
-%     err1_rel1=zeros(maxSupp,maxIter);
-%     err2_rel1=zeros(maxSupp,maxIter);
-%
-%     err1_rel2=zeros(maxSupp,maxIter);
-%     err2_rel2=zeros(maxSupp,maxIter);
+     err1_rel1=zeros(maxSupp,maxIter);
+     err2_rel1=zeros(maxSupp,maxIter);
+
+     err1_rel2=zeros(maxSupp,maxIter);
+     err2_rel2=zeros(maxSupp,maxIter);
 
 err1_SBL=zeros(maxSupp,maxIter);
 err2_SBL=zeros(maxSupp,maxIter);
@@ -100,26 +102,27 @@ for supp_num=1:maxSupp
         runTimes(5)=runTimes(5)+toc;
         
         %
-        %             tic
-        %             x=lp_re(A,b,1);
-        %             S=(abs(x)>1e-4);
-        %             err1_rel1(supp_num,iter)=norm(x-x0)^2/norm(x0)^2;
-        %             err2_rel1(supp_num,iter)=(max(sum(S),supp_num)-sum(S.*supp))/max(sum(S),supp_num);
-        %             runTimes(6)=runTimes(6)+toc;
-        %             %
-        %             tic
-        %             x=lp_re(A,b,2);
-        %             S=(abs(x)>1e-4);
-        %             err1_rel2(supp_num,iter)=norm(x-x0)^2/norm(x0)^2;
-        %             err2_rel2(supp_num,iter)=(max(sum(S),supp_num)-sum(S.*supp))/max(sum(S),supp_num);
-        %             runTimes(7)=runTimes(7)+toc;
+        x0=x;
+                     tic
+                     x=reweightedL1(A,b,x0);
+                     S=(abs(x)>1e-4);
+                     err1_rel1(supp_num,iter)=norm(x-x0)^2/norm(x0)^2;
+                     err2_rel1(supp_num,iter)=(max(sum(S),supp_num)-sum(S.*supp))/max(sum(S),supp_num);
+                     runTimes(6)=runTimes(6)+toc;
+                     %
+                     tic
+                     x=reweightedL2(A,b,x0);
+                     S=(abs(x)>1e-4);
+                     err1_rel2(supp_num,iter)=norm(x-x0)^2/norm(x0)^2;
+                     err2_rel2(supp_num,iter)=(max(sum(S),supp_num)-sum(S.*supp))/max(sum(S),supp_num);
+                     runTimes(7)=runTimes(7)+toc;
         
         tic
         x=MSBL(A,b,1e-10,0);
         S=(abs(x)>1e-4);
         err1_SBL(supp_num,iter)=norm(x-x0)^2/norm(x0)^2;
         err2_SBL(supp_num,iter)=(max(sum(S),supp_num)-sum(S.*supp))/max(sum(S),supp_num);
-        runTimes(6)=runTimes(6)+toc;
+        runTimes(8)=runTimes(8)+toc;
         
         
     end
@@ -145,11 +148,11 @@ err2_WMP_mean=mean(err2_WMP,2);
 err1_lasso_mean=mean(err1_lasso,2);
 err2_lasso_mean=mean(err2_lasso,2);
 
-%     err1_rel1_mean=mean(err1_rel1,2);
-%     err2_rel1_mean=mean(err2_rel1,2);
-%
-%     err1_rel2_mean=mean(err1_rel2,2);
-%     err2_rel2_mean=mean(err2_rel2,2);
+     err1_rel1_mean=mean(err1_rel1,2);
+     err2_rel1_mean=mean(err2_rel1,2);
+
+     err1_rel2_mean=mean(err1_rel2,2);
+     err2_rel2_mean=mean(err2_rel2,2);
 
 err1_SBL_mean=mean(err1_SBL,2);
 err2_SBL_mean=mean(err2_SBL,2);
@@ -158,21 +161,21 @@ axis_supp_num=1:maxSupp;
 figure;
 %plot(axis_supp_num,err1_MP_mean,axis_supp_num,err1_OMP_mean,axis_supp_num,err1_LSOMP_mean,axis_supp_num,err1_WMP_mean,axis_supp_num,err1_ThMP_mean,'LineWidth',2);
 %plot(axis_supp_num,err1_MP_mean,'-',axis_supp_num,err1_OMP_mean,'--',axis_supp_num,err1_LSOMP_mean,':',axis_supp_num,err1_WMP_mean,'-.','LineWidth',2);
-plot(axis_supp_num,err1_MP_mean,'-',axis_supp_num,err1_OMP_mean,'--',axis_supp_num,err1_LSOMP_mean,':',axis_supp_num,err1_WMP_mean,'-.',axis_supp_num,err1_lasso_mean,'+-',axis_supp_num,err1_SBL_mean,'o','LineWidth',2);
+plot(axis_supp_num,err1_MP_mean,'-',axis_supp_num,err1_OMP_mean,'--',axis_supp_num,err1_LSOMP_mean,':',axis_supp_num,err1_WMP_mean,'-.',axis_supp_num,err1_lasso_mean,'+-',axis_supp_num,err1_rel1_mean,'*-',axis_supp_num,err1_rel2_mean,'^',axis_supp_num,err1_SBL_mean,'o','LineWidth',2);
 
 title('l2 recovery error v.s. Cardinality','FontSize',15,'FontWeight','Bold')
 xlabel('Cardinality of the true solution','FontSize',15);
 ylabel('Average relative l_2 error','FontSize',15);
-legend('MP','OMP','LS-OMP','Weak-MP(t=0.5)','lasso','SBL','Location','northwest')
+legend('MP','OMP','LS-OMP','Weak-MP(t=0.5)','lasso','rel1','rel2','SBL','Location','northwest')
 set(gca,'FontSize',15,'FontWeight','Bold');
 saveas(gca, ['./eps/' 'l2.eps'] ,'epsc');
 
 figure;
-plot(axis_supp_num,err2_MP_mean,'-',axis_supp_num,err2_OMP_mean,'--',axis_supp_num,err2_LSOMP_mean,':',axis_supp_num,err2_WMP_mean,'-.',axis_supp_num,err2_lasso_mean,'+-',axis_supp_num,err2_SBL_mean,'o','LineWidth',2);
+plot(axis_supp_num,err2_MP_mean,'-',axis_supp_num,err2_OMP_mean,'--',axis_supp_num,err2_LSOMP_mean,':',axis_supp_num,err2_WMP_mean,'-.',axis_supp_num,err2_lasso_mean,'+-',axis_supp_num,err2_rel1_mean,'*-',axis_supp_num,err2_rel2_mean,'^',axis_supp_num,err2_SBL_mean,'o','LineWidth',2);
 title('support error v.s. Cardinality','FontSize',15,'FontWeight','Bold')
 xlabel('Cardinality of the true solution','FontSize',15);
 ylabel('Probability of error in Support','FontSize',15);
-legend('MP','OMP','LS-OMP','Weak-MP(t=0.5)','lasso','SBL','Location','northwest')
+legend('MP','OMP','LS-OMP','Weak-MP(t=0.5)','lasso','rel1','rel2','SBL','Location','northwest')
 set(gca,'FontSize',15,'FontWeight','Bold');
 saveas(gca, ['./eps/'  'card.eps'] ,'epsc');
 
@@ -185,6 +188,6 @@ bar(runTimes_mean);
 title('runtimes of the algorithms','FontSize',15,'FontWeight','Bold')
 xlabel('Algorithms to compare','FontSize',15);
 ylabel('runtime(s)','FontSize',15);
-set(gca,'XTickLabel',{'MP','OMP','LS-OMP','Weak-MP(t=0.5)','lasso','SBL'})
+set(gca,'XTickLabel',{'MP','OMP','LS-OMP','Weak-MP(t=0.5)','lasso','rel1','rel2','SBL'})
 set(gca,'FontSize',10,'FontWeight','Bold');
 saveas(gca, ['./eps/runtime.eps' ] ,'epsc');
